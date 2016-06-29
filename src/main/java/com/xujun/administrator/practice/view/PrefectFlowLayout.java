@@ -27,21 +27,29 @@ public class PrefectFlowLayout extends ViewGroup {
     public PrefectFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
-    private int parentWidthSize;//父容器宽度
-    private int horizontalSpacing = 16;//水平间距
-    private int verticalSpacing = 16;//垂直间距
-    private Line currentLine;//当前行
-    private List<Line> mLines = new ArrayList<>();//所有行的集合
-    private int userWidth = 0;//当前行已使用宽度
+    //父容器宽度
+    private int parentWidthSize;
+    //水平间距
+    private int horizontalSpacing = 16;
+    //垂直间距
+    private int verticalSpacing = 16;
+    //当前行
+    private Line currentLine;
+    //所有行的集合
+    private List<Line> mLines = new ArrayList<>();
+    //当前行已使用宽度
+    private int userWidth = 0;
 
     /**
      * 行对象
      */
     private class Line {
-        private List<View> children;//一行里面所添加的子View集合
-        private int height;//当前行高度
-        private int lineWidth = 0;//当前行已使用宽度
+        //一行里面所添加的子View集合
+        private List<View> children;
+        //当前行高度
+        private int height;
+        //当前行已使用宽度
+        private int lineWidth = 0;
 
         public Line() {
             children = new ArrayList<>();
@@ -55,9 +63,11 @@ public class PrefectFlowLayout extends ViewGroup {
         private void addChild(View child) {
             children.add(child);
             if (child.getMeasuredHeight() > height) {
-                height = child.getMeasuredHeight();//当前行高度以子控件最大高度为准
+                //当前行高度以子控件最大高度为准
+                height = child.getMeasuredHeight();
             }
-            lineWidth += child.getMeasuredWidth();//将每个子控件宽度进行累加，记录使用的宽度
+            //将每个子控件宽度进行累加，记录使用的宽度
+            lineWidth += child.getMeasuredWidth();
         }
 
         /**
@@ -96,8 +106,10 @@ public class PrefectFlowLayout extends ViewGroup {
             for (int i = 0; i < children.size(); i++) {
                 View child = children.get(i);
                 child.getLayoutParams().width=child.getMeasuredWidth()+surplusChild;
-                if (surplusChild>0){//如果长度改变了后，需要重新测量，否则布局中的属性大小还会是原来的大小
-                    child.measure(MeasureSpec.makeMeasureSpec(child.getMeasuredWidth()+surplusChild,MeasureSpec.EXACTLY)
+                if (surplusChild>0){
+                    //如果长度改变了后，需要重新测量，否则布局中的属性大小还会是原来的大小
+                    child.measure(MeasureSpec.makeMeasureSpec(
+                            child.getMeasuredWidth()+surplusChild,MeasureSpec.EXACTLY)
                             ,MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY));
                 }
                 child.layout(l, t, l + child.getMeasuredWidth(), t + child.getMeasuredHeight());
@@ -116,10 +128,12 @@ public class PrefectFlowLayout extends ViewGroup {
         userWidth = 0;
         //获取父容器的宽度和模式
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        parentWidthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
+        parentWidthSize = MeasureSpec.getSize(widthMeasureSpec)
+                - getPaddingLeft() - getPaddingRight();
         //获取父容器的高度和模式
         int heigthMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec) - getPaddingTop() - getPaddingBottom();
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec)
+                - getPaddingTop() - getPaddingBottom();
         int childWidthMode, childHeightMode;
         //为了测量每个子控件，需要指定每个子控件的测量规则
         //子控件设置为WRAP_CONTENT，具体测量规则详见，ViewGroup的getChildMeasureSpec()方法
@@ -141,33 +155,43 @@ public class PrefectFlowLayout extends ViewGroup {
             View child = getChildAt(i);
             //测量每一个孩子
             child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
-            int childMeasuredWidth = child.getMeasuredWidth();//获取当前子控件的实际宽度
-            userWidth += childMeasuredWidth;//让当前行使用宽度加上当前子控件宽度
+            //获取当前子控件的实际宽度
+            int childMeasuredWidth = child.getMeasuredWidth();
+            //让当前行使用宽度加上当前子控件宽度
+            userWidth += childMeasuredWidth;
             if (userWidth <= parentWidthSize) {
                 //如果当前行使用宽度小于父控件的宽度，则加入该行
                 currentLine.addChild(child);
-                userWidth += horizontalSpacing;//当前行使用宽度加上子控件之间的水平距离
-                if (userWidth > parentWidthSize) {//如果当前行加上水平距离后超出父控件宽度,则换行
+                //当前行使用宽度加上子控件之间的水平距离
+                userWidth += horizontalSpacing;
+                //如果当前行加上水平距离后超出父控件宽度,则换行
+                if (userWidth > parentWidthSize) {
                     newLine();
                 }
             } else {
-                if (currentLine.getChildCount() == 0) {//以防出现一个子控件宽度超过父控件的情况出现
+                //以防出现一个子控件宽度超过父控件的情况出现
+                if (currentLine.getChildCount() == 0) {
                     currentLine.addChild(child);
                 }
                 newLine();
-                currentLine.addChild(child);//并将超出范围的当前的子控件加入新的行中
-                userWidth = child.getMeasuredWidth()+horizontalSpacing;//并将使用宽度加上子控件的宽度;
+                //并将超出范围的当前的子控件加入新的行中
+                currentLine.addChild(child);
+                //并将使用宽度加上子控件的宽度;
+                userWidth = child.getMeasuredWidth()+horizontalSpacing;
             }
         }
-        if (!mLines.contains(currentLine)) {//加入最后一行，因为如果最后一行宽度不足父控件宽度时，就未换行
+        //加入最后一行，因为如果最后一行宽度不足父控件宽度时，就未换行
+        if (!mLines.contains(currentLine)) {
             mLines.add(currentLine);
         }
         int totalHeight = 0;//总高度
         for (Line line : mLines) {
-            totalHeight += line.getHeight() + verticalSpacing;//总高度等于每一行的高度+垂直间距
+            //总高度等于每一行的高度+垂直间距
+            totalHeight += line.getHeight() + verticalSpacing;
         }
+        //resolveSize(),将实际高度与父控件高度进行比较，选取最合适的
         setMeasuredDimension(parentWidthSize + getPaddingLeft() + getPaddingRight(),
-                resolveSize(totalHeight + getPaddingTop() + getPaddingBottom(), heightMeasureSpec));//resolveSize(),将实际高度与父控件高度进行比较，选取最合适的
+                resolveSize(totalHeight + getPaddingTop() + getPaddingBottom(), heightMeasureSpec));
     }
 
     /**
@@ -194,8 +218,10 @@ public class PrefectFlowLayout extends ViewGroup {
         t += getPaddingTop();
         for (int i = 0; i < mLines.size(); i++) {
             Line line = mLines.get(i);
-            line.onLayout(l, t);//设置每一行的位置，每一行的子控件由其自己去分配
-            t += line.getHeight() + verticalSpacing;//距离最顶端的距离，即每一行高度和垂直间距的累加
+            //设置每一行的位置，每一行的子控件由其自己去分配
+            line.onLayout(l, t);
+            //距离最顶端的距离，即每一行高度和垂直间距的累加
+            t += line.getHeight() + verticalSpacing;
         }
     }
 

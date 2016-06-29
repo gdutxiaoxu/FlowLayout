@@ -44,11 +44,11 @@ public class SimpleFlowLayout extends ViewGroup {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-//                已用的宽度
+//       已用的宽度
                 int childUsedWidth = 0;
-//                已用的高度
+//      已用的高度
                 int childUsedHeight = 0;
-//                调用ViewGroup自身的方法测量孩子的宽度和高度，我们也可以自己根据MeasureMode来测量
+//  调用ViewGroup自身的方法测量孩子的宽度和高度，我们也可以自己根据MeasureMode来测量
                 measureChild(child,widthMeasureSpec,heightMeasureSpec);
                 childUsedWidth += child.getMeasuredWidth();
                 childUsedHeight += child.getMeasuredHeight();
