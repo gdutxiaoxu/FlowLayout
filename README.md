@@ -1,11 +1,14 @@
-# FlowLayout（流布式布局的使用）
-
+﻿
+#  常用的自定义View例子一
 
 **在Android开发中，我们经常会遇到流布式的布局，经常会用来一些标签的显示，比如qq中个人便签，搜索框下方提示的词语，这些是指都是流布式的布局，今天我就我们日常开放中遇到的流布式布局坐一些总结**
+
 [本文固定链接：](https://www.zybuluo.com/xujun94/note/421987)https://www.zybuluo.com/xujun94/note/421987
 
 **[转载请注明博客地址：](http://blog.csdn.net/gdutxiaoxu/article/details/51765428)http://blog.csdn.net/gdutxiaoxu/article/details/51765428**
+
 **[源码下载地址：](https://github.com/gdutxiaoxu/CustomViewDemo.git)https://github.com/gdutxiaoxu/CustomViewDemo.git **
+
 ![效果图](http://img.blog.csdn.net/20160627003718170)
 
 ## 1. 先给大家看一下效果
@@ -507,6 +510,7 @@ public class PrefectFlowLayout extends ViewGroup {
 	           ,MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY));
 ```
 ### 今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。
-**[源码下载地址：](https://github.com/gdutxiaoxu/CustomViewDemo.git)https://github.com/gdutxiaoxu/CustomViewDemo.git **
+
+[**源码下载地址：**](https://github.com/gdutxiaoxu/CustomViewDemo.git)https://github.com/gdutxiaoxu/CustomViewDemo.git 
 
 
