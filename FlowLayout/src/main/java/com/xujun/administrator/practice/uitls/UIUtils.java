@@ -7,14 +7,14 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 
 import java.util.Random;
+
 /**
  * 博客地址：http://blog.csdn.net/gdutxiaoxu
+ *
  * @author xujun
  * @time 2016/6/25 11:23.
  */
 public class UIUtils {
-
-
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
@@ -39,18 +39,19 @@ public class UIUtils {
      */
     public static int getColor() {
         Random random = new Random();
-        int red = random.nextInt(200)+20;//范围[20,220)，以防出现黑色和白色，看不清的情况
-        int green = random.nextInt(200)+20;
-        int blue = random.nextInt(200)+20;
+        int red = random.nextInt(200) + 20;//范围[20,220)，以防出现黑色和白色，看不清的情况
+        int green = random.nextInt(200) + 20;
+        int blue = random.nextInt(200) + 20;
         return Color.rgb(red, green, blue);
     }
 
     /**
      * 获取指定颜色的圆角背景shape
+     *
      * @return
      */
-    public static Drawable createShape(int color){
-        GradientDrawable gradientDrawable=new GradientDrawable();
+    public static Drawable createShape(int color) {
+        GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setCornerRadius(15);
         gradientDrawable.setColor(color);
         return gradientDrawable;
@@ -58,24 +59,17 @@ public class UIUtils {
 
     /**
      * 获取一个状态选择器
-     * @param pressed  按下的图案
+     *
+     * @param pressed 按下的图案
      * @param normal  正常的图案
      * @return
      */
-    public static StateListDrawable getStateListDrawable(Drawable pressed,Drawable normal){
-        StateListDrawable stateListDrawable=new StateListDrawable();
+    public static StateListDrawable getStateListDrawable(Drawable pressed, Drawable normal) {
+        StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
         stateListDrawable.addState(new int[]{}, normal);
         return stateListDrawable;
     }
-
-
-
-
-
-
-
-
 
 
 }
