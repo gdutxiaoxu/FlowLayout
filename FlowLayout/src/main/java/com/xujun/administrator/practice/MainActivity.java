@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
                 jump(PrefectSampleActivity.class);
                 break;
 
+            case R.id.btn_MyFlowLayot:
+                jump(MySampleActivity.class);
+                break;
+
             default:break;
         }
     }

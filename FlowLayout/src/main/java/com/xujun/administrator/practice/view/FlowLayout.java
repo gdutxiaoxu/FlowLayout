@@ -39,6 +39,7 @@ public class FlowLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
         Logger.i("onMeasure");
         mCurrentLine = null;
         mLineList.clear();

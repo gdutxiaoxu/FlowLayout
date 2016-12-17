@@ -9,7 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PrefectSampleActivity">
-
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FlowLayoutSample">
+        </activity>
+        <activity android:name=".MySampleActivity">
         </activity>
     </application>
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_my_sample"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xujun.administrator.practice.MySampleActivity">
+<!--
+    <com.xujun.administrator.practice.view.MyFlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@android:color/holo_green_light">
+
+    </com.xujun.administrator.practice.view.MyFlowLayout>-->
+
+
+    <com.xujun.administrator.practice.view.MyFlowLayout
+        android:id="@+id/my_flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark">
+
+
+
+    </com.xujun.administrator.practice.view.MyFlowLayout>
+
+</LinearLayout>
