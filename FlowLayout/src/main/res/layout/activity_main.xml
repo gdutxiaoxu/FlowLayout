@@ -1,40 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
+<LinearLayout
+    android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-
+    <Button
+        android:id="@+id/btn_flowLayot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="FlowLayoutSample"/>
 
-      <Button
-          android:text="SimpleFlowLayout"
-          android:id="@+id/btn_1"
-          android:onClick="onButtonClick"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/btn_PrefectLayot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="PrefectLayoutSample"/>
 
-        <Button
-            android:text="FlowLayout"
-            android:id="@+id/btn_2"
-            android:onClick="onButtonClick"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <FrameLayout
-            android:id="@+id/root"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-
-
-
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

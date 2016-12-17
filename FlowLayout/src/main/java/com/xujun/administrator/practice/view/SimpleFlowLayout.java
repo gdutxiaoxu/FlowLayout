@@ -1,7 +1,5 @@
 package com.xujun.administrator.practice.view;
 
-
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.view.View;
@@ -9,18 +7,20 @@ import android.view.ViewGroup;
 
 /**
  * 博客地址：http://blog.csdn.net/gdutxiaoxu
+ *
  * @author xujun
  * @time 2016/6/20 23:49.
  */
 public class SimpleFlowLayout extends ViewGroup {
-    private int  verticalSpacing = 20;
+    private int verticalSpacing = 20;
 
-    public SimpleFlowLayout(Context context ) {
+    public SimpleFlowLayout(Context context) {
         super(context);
     }
 
     /**
      * 重写onMeasure方法是为了确定最终的大小
+     *
      * @param widthMeasureSpec
      * @param heightMeasureSpec
      */
@@ -33,9 +33,10 @@ public class SimpleFlowLayout extends ViewGroup {
 
         int paddingLeft = getPaddingLeft();
         int paddingRight = getPaddingRight();
+
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
-//处理Padding属性，让当前的ViewGroup支持Padding
+        //处理Padding属性，让当前的ViewGroup支持Padding
         int widthUsed = paddingLeft + paddingRight;
         int heightUsed = paddingTop + paddingBottom;
 
@@ -44,24 +45,24 @@ public class SimpleFlowLayout extends ViewGroup {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-//       已用的宽度
+                //       已用的宽度
                 int childUsedWidth = 0;
-//      已用的高度
+                //      已用的高度
                 int childUsedHeight = 0;
-//  调用ViewGroup自身的方法测量孩子的宽度和高度，我们也可以自己根据MeasureMode来测量
-                measureChild(child,widthMeasureSpec,heightMeasureSpec);
+                //  调用ViewGroup自身的方法测量孩子的宽度和高度，我们也可以自己根据MeasureMode来测量
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
                 childUsedWidth += child.getMeasuredWidth();
                 childUsedHeight += child.getMeasuredHeight();
-//处理Margin，支持孩子的Margin属性
+                //处理Margin，支持孩子的Margin属性
                 Rect marginRect = getMarginRect(child);
-                int leftMargin=marginRect.left;
-                int rightMargin=marginRect.right;
-                int topMargin=marginRect.top;
-                int bottomMargin=marginRect.bottom;
+                int leftMargin = marginRect.left;
+                int rightMargin = marginRect.right;
+                int topMargin = marginRect.top;
+                int bottomMargin = marginRect.bottom;
 
                 childUsedWidth += leftMargin + rightMargin;
                 childUsedHeight += topMargin + bottomMargin;
-//总宽度没有超过本行
+                //总宽度没有超过本行
                 if (widthUsed + childUsedWidth < widthSpecSize) {
                     widthUsed += childUsedWidth;
                     if (childUsedHeight > childMaxHeightOfThisLine) {
@@ -76,11 +77,10 @@ public class SimpleFlowLayout extends ViewGroup {
             }
 
         }
-//加上最后一行的最大高度
+        //加上最后一行的最大高度
         heightUsed += childMaxHeightOfThisLine;
         setMeasuredDimension(widthSpecSize, heightUsed);
     }
-
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -100,7 +100,7 @@ public class SimpleFlowLayout extends ViewGroup {
         int childMaxHeight = 0;
 
         int childCount = getChildCount();
-//摆放每一个孩子的高度
+        //摆放每一个孩子的高度
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
@@ -111,14 +111,14 @@ public class SimpleFlowLayout extends ViewGroup {
                 int childMeasuredHeight = child.getMeasuredHeight();
 
                 Rect marginRect = getMarginRect(child);
-                int leftMargin=marginRect.left;
-                int rightMargin=marginRect.right;
-                int topMargin=marginRect.top;
-                int bottomMargin=marginRect.bottom;
+                int leftMargin = marginRect.left;
+                int rightMargin = marginRect.right;
+                int topMargin = marginRect.top;
+                int bottomMargin = marginRect.bottom;
                 childNeededWidth = leftMargin + rightMargin + childMeasuredWidth;
                 childNeedHeight = topMargin + topMargin + childMeasuredHeight;
 
-//                没有超过本行
+                //                没有超过本行
                 if (widthUsed + childNeededWidth <= r - l) {
                     if (childNeedHeight > childMaxHeight) {
                         childMaxHeight = childNeedHeight;
