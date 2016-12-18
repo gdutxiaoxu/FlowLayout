@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".MySampleActivity">
         </activity>
+        <activity android:name=".MyPrefectSample">
+        </activity>
     </application>
 
 </manifest>

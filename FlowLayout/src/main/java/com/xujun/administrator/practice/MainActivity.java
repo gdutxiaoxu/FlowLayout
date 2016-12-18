@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
                 jump(MySampleActivity.class);
                 break;
 
+            case R.id.btn_MyPrefectLayout:
+                jump(MyPrefectSample.class);
+                break;
+
             default:break;
         }
     }
