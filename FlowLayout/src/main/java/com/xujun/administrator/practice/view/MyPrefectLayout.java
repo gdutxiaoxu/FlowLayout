@@ -55,7 +55,7 @@ public class MyPrefectLayout extends ViewGroup {
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             getParamsRect(rect, child.getLayoutParams());
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+           /* measureChild(child, widthMeasureSpec, heightMeasureSpec);
             int measuredWidth = child.getMeasuredWidth();
             if(measuredWidth+ rect.left + rect.right>mMaxWidth){
                 //如果长度改变了后，需要重新测量，否则布局中的属性大小还会是原来的大小
@@ -63,7 +63,12 @@ public class MyPrefectLayout extends ViewGroup {
                         mMaxWidth-rect.left-rect.right,MeasureSpec.EXACTLY)
                         ,MeasureSpec.makeMeasureSpec(child.getMeasuredHeight(),MeasureSpec.EXACTLY));
                 measuredWidth=child.getMeasuredWidth();
-            }
+            }*/
+            measureChildWithMargins(child,widthMeasureSpec,
+                    rect.left+rect.right,heightMeasureSpec,0);
+            int measuredWidth = child.getMeasuredWidth();
+
+
             int measuredHeight = child.getMeasuredHeight();
             useWidth += measuredWidth + rect.left + rect.right;
             if (useWidth > width) {//换行了
